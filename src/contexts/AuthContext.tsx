@@ -77,23 +77,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       // no-op
     }
 
-    const revalidateIfDue = async () => {
+    const revalidate = async () => {
       const stored = serverKeyStorage.get();
       if (!stored) return;
-
-      const lastValidated = serverKeyStorage.getLastValidated();
-      if (Date.now() - lastValidated < DAY_MS) {
-        // Validated within the last 24h: allow the app to start,
-        // the daily check below will re-verify when due.
-        if (mountedRef.current) setIsAuthenticated(true);
-        return;
-      }
-
-      // Stale (>24h): must match the database before entering the app
+      // Every launch must match the database before the app opens
       await validateServerKey(stored, false);
     };
 
-    revalidateIfDue();
+    revalidate();
 
     const interval = setInterval(() => {
       const stored = serverKeyStorage.get();
