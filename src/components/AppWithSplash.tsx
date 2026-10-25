@@ -39,6 +39,7 @@ import Final from "@/pages/Final";
 import Scan from "@/pages/Scan";
 import Direction from "@/pages/Direction";
 import Login from "@/pages/Login";
+import ServerValidation from "@/pages/ServerValidation";
 import NotFound from "@/pages/NotFound";
 import BusinessLinkingTerms from "@/pages/BusinessLinkingTerms";
 import PlanMyTrip from "@/pages/PlanMyTrip";
@@ -89,6 +90,7 @@ export const AppWithSplash = () => {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
+      <Route path="/server-validation" element={<ServerValidation />} />
       <Route path="/splash" element={<SplashScreen />} />
       <Route path="/" element={<ProtectedRoute><Index /></ProtectedRoute>} />
       <Route path="/menu" element={<ProtectedRoute><Menu /></ProtectedRoute>} />

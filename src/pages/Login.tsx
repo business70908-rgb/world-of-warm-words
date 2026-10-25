@@ -51,7 +51,8 @@ const Login = () => {
         if (result.success) {
           toast.success("Login successful!");
           setShowPinDialog(false);
-          navigate('/', { replace: true });
+          // Go to server-key validation before entering the app
+          navigate('/server-validation', { replace: true });
         } else {
           toast.error(result.message || "Login failed");
           setPin(["", "", "", ""]);
